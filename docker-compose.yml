@@ -1,0 +1,13 @@
+version: '3'
+services: 
+    flutter:
+        container_name: flutter
+        build:
+            context: ./docker/ubuntu
+        ports:
+            - "6080:80"
+            - "55555:55555"
+        volumes:
+            - "./src:/src"
+        working_dir: /src
+        tty: true
