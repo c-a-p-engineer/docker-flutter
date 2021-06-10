@@ -4,6 +4,8 @@ services:
         container_name: flutter
         build:
             context: ./docker/ubuntu
+            args:
+              - INSTALL_ANDROID=${INSTALL_ANDROID}
         ports:
             - "6080:80"
             - "55555:55555"

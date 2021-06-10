@@ -14,9 +14,6 @@ docker-compose up -d --build
 docker exec -it flutter bash
 ```
 
-## Android Studio起動
-`/usr/local/android-studio/bin/studio.sh`
-
 # Usage
 
 ## flutter の状況確認
@@ -48,14 +45,52 @@ flutter run -d web-server --web-port 55555 --web-hostname 0.0.0.0
 ```
 http://localhost:5555 で確認
 
-
 4.build
 ```
 flutter build web
 ```
 
+## Android Studio設定
+
+1.Androidの設定
+以下の設定を有効にするとAndoroid Studioをインストールします。
+`.env.example` → `.env`
+`INSTALL_ANDROID=true`
+
+2.Andoroid Studioの起動
+Docker build後にDocker内（http://127.0.0.1:6080/）で実行して Andoroid Studio を設定してください。
+`/opt/android-studio/bin/studio.sh`
+
+3.Andoroid Studioの設定
+起動後
+ダイアログの右下のConfigure > Android SDK > タブのSDK Toolsを選択 > Android ADK Command-line Tools をチェック > OK
+
+※初期起動のダイアログでやり忘れたら以下の手順で実行
+Andoroid Studio 起動中
+ツールバー Tools > SDK Toolsを選択 > Android ADK Command-line Tools をチェック > OK
+
+3.SDKの設定
+```
+flutter config --android-sdk /root/Android/Sdk
+```
+
+`/root/Andorid/Sdk` を適宜変えてください。
+
+4.Androidの設定
+```
+flutter doctor --android-licenses
+```
+
+全て `y` でOKです。
+
+5.インストールの確認
+```
+flutter doctor
+```
+
 # Note
 * [Android Studio のインストール](https://developer.android.com/studio/install?hl=ja)
+* [How to install Android Studio on Ubuntu 20.04](https://vitux.com/how-to-install-android-studio-on-ubuntu-20-04/)
 * [Flutter Linux setup](https://flutter.dev/docs/get-started/install/linux#linux-setup)
 * [dorowu/ubuntu-desktop-lxde-vnc](https://hub.docker.com/r/dorowu/ubuntu-desktop-lxde-vnc/) 
 
