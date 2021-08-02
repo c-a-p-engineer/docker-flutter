@@ -43,7 +43,7 @@ port:55555 でサーバー起動
 ```
 flutter run -d web-server --web-port 55555 --web-hostname 0.0.0.0
 ```
-http://localhost:5555 で確認
+http://localhost:55555 で確認
 
 4.build
 ```
