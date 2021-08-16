@@ -4,6 +4,9 @@
 * [docker](https://www.docker.com/)
 
 # Install
+`.env.example` をコピー `.env` を作成。
+各種設定値を修正。
+
 Docker起動
 ```
 docker-compose up -d --build
