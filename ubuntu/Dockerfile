@@ -1,6 +1,7 @@
-FROM dorowu/ubuntu-desktop-lxde-vnc
+FROM dorowu/ubuntu-desktop-lxde-vnc:latest
 WORKDIR /usr/local/
 RUN apt update
+ARG FLUTTER_VERSION=stable
 
 # Vim インストール
 RUN apt -y install vim
@@ -11,7 +12,7 @@ RUN apt -y install git
 RUN apt update
 
 # flutter インストール
-RUN git clone -b stable https://github.com/flutter/flutter
+RUN git clone -b ${FLUTTER_VERSION} https://github.com/flutter/flutter
 ENV PATH $PATH:PATH:/usr/local/flutter/bin
 
 ARG INSTALL_ANDROID=false
@@ -27,11 +28,15 @@ fi
 
 # Flutter ビルド用パッケージのインストール
 # https://flutter.dev/docs/get-started/install/linux
-RUN apt -y install curl
-RUN apt -y install file
-RUN apt -y install unzip
-RUN apt -y install xz-utils
-RUN apt -y install zip
+RUN apt -y install curl \
+    file \
+    unzip \
+    xz-utils \
+    zip
+
+# Flutter Linux Desktop Setup
+# https://docs.flutter.dev/get-started/install/linux#linux-setup
+RUN apt -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
 
 # Google Chromeインストール
 RUN apt-get install google-chrome-stable

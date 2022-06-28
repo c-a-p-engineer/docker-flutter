@@ -33,15 +33,15 @@ http://127.0.0.1:6080/
 1. 作業ディレクトリ
 ```
 cd /src
-````
+```
 
-2.サンプル作成
+2. サンプル作成
 flutter サンプルを作成
 ```
 flutter create .
 ```
 
-3.サンプル起動
+3. サンプル起動
 port:55555 でサーバー起動
 ```
 flutter run -d web-server --web-port 55555 --web-hostname 0.0.0.0
@@ -55,16 +55,16 @@ flutter build web
 
 ## Android Studio設定
 
-1.Androidの設定
+1. Androidの設定
 以下の設定を有効にするとAndoroid Studioをインストールします。
 `.env.example` → `.env`
 `INSTALL_ANDROID=true`
 
-2.Andoroid Studioの起動
-Docker build後にDocker内（http://127.0.0.1:6080/）で実行して Andoroid Studio を設定してください。
+2. Andoroid Studioの起動
+Docker build後にDocker内（ http://127.0.0.1:6080/ ）で実行して `Andoroid Studio` を設定してください。
 `/opt/android-studio/bin/studio.sh`
 
-3.Andoroid Studioの設定
+3. Andoroid Studioの設定
 起動後
 ダイアログの右下のConfigure > Android SDK > タブのSDK Toolsを選択 > Android ADK Command-line Tools をチェック > OK
 
@@ -72,21 +72,21 @@ Docker build後にDocker内（http://127.0.0.1:6080/）で実行して Andoroid 
 Andoroid Studio 起動中
 ツールバー Tools > SDK Toolsを選択 > Android ADK Command-line Tools をチェック > OK
 
-3.SDKの設定
+4. SDKの設定
 ```
 flutter config --android-sdk /root/Android/Sdk
 ```
 
 `/root/Andorid/Sdk` を適宜変えてください。
 
-4.Androidの設定
+4. Androidの設定
 ```
 flutter doctor --android-licenses
 ```
 
-全て `y` でOKです。
+全て `y` で OK です。
 
-5.インストールの確認
+5. インストールの確認
 ```
 flutter doctor
 ```

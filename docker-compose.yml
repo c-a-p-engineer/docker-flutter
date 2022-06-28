@@ -5,6 +5,7 @@ services:
         build:
             context: ./ubuntu
             args:
+              - FLUTTER_VERSION=${FLUTTER_VERSION}
               - INSTALL_ANDROID=${INSTALL_ANDROID}
         ports:
             - "6080:80"
