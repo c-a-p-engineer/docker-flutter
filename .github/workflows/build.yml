@@ -1,0 +1,62 @@
+name: Flutter Build
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+
+jobs:
+  FileCheck:
+    uses: ./.github/workflows/file_exists.yml
+    with:
+      files: './src/pubspec.yaml'
+
+  Test:
+    needs: FileCheck
+    uses: ./.github/workflows/test.yml
+    with:
+      working_directory: './src'
+      flutter_version: '3.0.4'
+      flutter_channel: 'stable'
+
+  build-windows:
+    needs: Test
+    uses: ./.github/workflows/build_windows.yml
+    with:
+      working_directory: './src'
+      flutter_version: '3.0.4'
+      flutter_channel: 'stable'
+
+  build-web:
+    needs: Test
+    uses: ./.github/workflows/build_web.yml
+    with:
+      working_directory: './src'
+      flutter_version: '3.0.4'
+      flutter_channel: 'stable'
+
+  build-linux:
+    needs: Test
+    uses: ./.github/workflows/build_linux.yml
+    with:
+      working_directory: './src'
+      flutter_version: '3.0.4'
+      flutter_channel: 'stable'
+
+  build-android:
+    needs: Test
+    uses: ./.github/workflows/build_andoroid.yml
+    with:
+      working_directory: './src'
+      flutter_version: '3.0.4'
+      flutter_channel: 'stable'
+
+  # build-ios:
+  #   needs: Test
+  #   uses: ./.github/workflows/ios.yml
+  #   with:
+  #     working_directory: './src'
+  #     flutter_version: '3.0.4'
+  #     LUTTER_CHANNEL: 'stable'

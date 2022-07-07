@@ -1,0 +1,49 @@
+name: Flutter iOS Build
+
+on:
+  workflow_call:
+    inputs:
+      working_directory:
+        description: 'working directory'
+        default: './src'
+        required: true
+        type: string
+      flutter_version:
+        description: 'flutter version'
+        default: '3.0.4'
+        required: true
+        type: string
+      flutter_channel:
+        description: 'flutter channel'
+        default: 'stable'
+        required: true
+        type: string
+
+jobs:
+  build-ios:
+    needs: test
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+    steps:
+    - uses: actions/checkout@v3
+    - uses: subosito/flutter-action@v2
+      with:
+        flutter-version: ${{ inputs.flutter_version }}
+        channel: ${{ inputs.flutter_channel }}
+        cache: true
+    - run: flutter pub get
+    # iOS Build
+    - run: flutter build ios --release --no-codesign
+    # - run: flutter build ipa
+    # 成果物アップロード
+    - name: artifact upload
+      uses: actions/upload-artifact@v2.2.0
+      with:
+        # 保存ファイル名（name.zip）
+        name: ios
+        # 保存するファイル
+        path: ./src/build/ios/
+        # 保存期間（日）
+        retention-days: 1
