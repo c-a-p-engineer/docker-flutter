@@ -49,7 +49,21 @@ flutter run -d web-server --web-port 55555 --web-hostname 0.0.0.0
 ```
 http://localhost:55555 で確認
 
-4.build
+
+or
+
+Linuxデスクトップで確認
+
+リモートデスクトップに接続
+http://127.0.0.1:6080/
+
+コンソール上で以下のコマンド
+```
+cd /flutter/
+flutter run -d
+```
+
+4. build
 ```
 flutter build web
 ```
