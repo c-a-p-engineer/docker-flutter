@@ -1,0 +1,20 @@
+{
+    "name": "Flutter Development",
+    "dockerComposeFile": [
+        "../.docker/docker-compose.yml"
+    ],
+    "service": "flutter",
+    "workspaceFolder": "/flutter",
+    "settings": {
+        "[dart]": {
+            "editor.formatOnSave": true
+        }
+    },
+    "extensions": [
+		"Dart-Code.flutter",
+		"davidwoo.flutter-auto-import",
+		"circlecodesolution.ccs-flutter-color",
+		"marcelovelasquez.flutter-tree",
+		"MarufHassan.flutter-snippets"
+	]
+}
