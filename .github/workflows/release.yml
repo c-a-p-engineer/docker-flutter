@@ -6,6 +6,7 @@ on:
       - master
 jobs:
   create_release:
+    if: github.event.pull_request.merged == true
     name: create_release
     runs-on: ubuntu-latest
     steps:
