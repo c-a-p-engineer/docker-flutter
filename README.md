@@ -60,7 +60,7 @@ http://127.0.0.1:6080/
 コンソール上で以下のコマンド
 ```
 cd /flutter/
-flutter run -d
+flutter run -d linux
 ```
 
 4. build
