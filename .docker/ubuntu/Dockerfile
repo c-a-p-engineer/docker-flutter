@@ -1,5 +1,8 @@
 FROM dorowu/ubuntu-desktop-lxde-vnc:latest
 WORKDIR /usr/local/
+
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+
 RUN apt update
 ARG FLUTTER_VERSION=stable
 
