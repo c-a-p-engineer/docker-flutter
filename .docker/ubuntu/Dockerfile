@@ -15,7 +15,7 @@ RUN apt -y install git
 RUN apt update
 
 # flutter インストール
-RUN git clone -b ${FLUTTER_VERSION} https://github.com/flutter/flutter
+RUN git clone --depth=1 -b ${FLUTTER_VERSION} https://github.com/flutter/flutter
 ENV PATH $PATH:PATH:/usr/local/flutter/bin
 
 ARG INSTALL_ANDROID=false
