@@ -3,16 +3,18 @@ WORKDIR /usr/local/
 
 RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
 
-RUN apt update
+# パッケージ取得先を変更
+RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+
 ARG FLUTTER_VERSION=stable
 
-# Vim インストール
-RUN apt -y install vim
-
-# Gitインストール
+# Git Vim インストール
 RUN add-apt-repository ppa:git-core/ppa
-RUN apt -y install git
-RUN apt update
+RUN apt-get update && apt-get install -y \
+    git \
+    vim \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # flutter インストール
 RUN git clone --depth=1 -b ${FLUTTER_VERSION} https://github.com/flutter/flutter
@@ -31,18 +33,33 @@ fi
 
 # Flutter ビルド用パッケージのインストール
 # https://flutter.dev/docs/get-started/install/linux
-RUN apt -y install curl \
+RUN apt-get update && apt -y install \
+    curl \
     file \
     unzip \
     xz-utils \
-    zip
+    zip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Flutter Linux Desktop Setup
 # https://docs.flutter.dev/get-started/install/linux#linux-setup
-RUN apt -y install clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev
+RUN apt-get update && apt -y install \
+    clang \
+    cmake \
+    ninja-build \
+    pkg-config \
+    libgtk-3-dev \
+    liblzma-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Google Chromeインストール
-RUN apt-get install google-chrome-stable
+RUN curl -O https://packages.cloud.google.com/apt/doc/apt-key.gpg && apt-key add apt-key.gpg
+RUN apt-get update && apt -y install \
+    google-chrome-stable \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Google Chrome Root実行用に書き換え
 # https://askubuntu.com/questions/451290/how-to-run-chromium-as-root
